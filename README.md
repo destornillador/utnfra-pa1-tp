@@ -12,3 +12,8 @@
 ```
 $> docker-compose up -d
 ```
+
+## Ejecutar aplicación
+
+La clase [App.java](src/App.java) es la entrypoint de la aplicación. Debe ser
+compilada y ejecutada.
