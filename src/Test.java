@@ -18,7 +18,7 @@ public class Test {
         this.nombre = nombre;
     }
 
-    public long getId() {
+    public Integer getId() {
         return id;
     }
 

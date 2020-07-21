@@ -1,0 +1,12 @@
+version: "3.7"
+
+services:
+  db:
+    image: "mysql:5.7.31"
+    volumes:
+      - "/home/imartinez/Documents/personal/facultad/utnfra/tssi/programacion_5/mysql_data:/var/lib/mysql"
+    restart: "always"
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: rootme

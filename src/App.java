@@ -3,32 +3,53 @@ import java.util.List;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        List<Test> tests = new ArrayList();
+        List<Test> tests = new ArrayList<Test>();
         
-        System.out.println("Crear objetos Test");
-        tests.add(new Test(0, "Diego Alberto"));
-        tests.add(new Test(1, "Roberto"));
-        tests.add(new Test(2, "Ricardo"));
-
-        // Insertar Tests
-        System.out.println("Insertando un Tests");
-        for (Test test : tests) {
-            services.Consultas.guardar(test);
+        log("Creando objetos Test");
+        String[] nombres = {"Diego", "Roberto", "Ricardo"};
+        for (int i = 0; i < nombres.length; i++) {
+            tests.add(new Test(i, nombres[i]));
+            System.out.println("  [+] ".concat(tests.get(i).getId().toString()).concat(":").concat(tests.get(i).getNombre()));
         }
 
-        // Actualizar el nombre del segundo Test
-        System.out.println("Actualizando un Test");
-        tests.get(1).setNombre("Nombre Modificado");
-        services.Consultas.modificar(tests.get(1));
+        log("Insertando objetos en la DB");
+        for (Test test : tests) {
+            services.Consultas.guardar(test);
+            System.out.println("  [+] ".concat(test.getId().toString()).concat(":").concat(test.getNombre()));
+        }
 
-        // Eliminar el primer Test
-        System.out.println("Eliminando un Test");
-        services.Consultas.eliminar(tests.get(0));
+        log("Actualizando el nombre del Id=0");
+        for (Test test : tests) {
+            if (test.getId() == 0) {
+                String nuevoNombre = "Tito";
+                System.out.println("  [~] ".concat(test.getId().toString()).concat(":").concat(test.getNombre().concat(" => ").concat(test.getId().toString().concat(":").concat(nuevoNombre))));
+                test.setNombre(nuevoNombre);
+                services.Consultas.modificar(test);
+                break;
+            }
+        }
+        log("Eliminando el Test cuyo Id=1");
+        for (Test test : tests) {
+            if (test.getId() == 1) {
+                System.out.println("  [-] ".concat(test.getId().toString()).concat(":").concat(test.getNombre()));
+                services.Consultas.eliminar(test);
+                break;
+            }
+        }
 
-        // Generar un Test a partir de un Id
-        System.out.println("Recuperando un Test");
-        Test testRecuperado = (Test) services.Consultas.obtenerPorId(Test.class, tests.get(1));
-        System.out.println("Id: " + testRecuperado.getId() + " - Nombre: " + testRecuperado.getNombre());
+        log("Recuperando el Test cuyo Id=2 de la DB");
+        for (Test test : tests) {
+            if (test.getId() == 2) {
+                Test testRecuperado = (Test) services.Consultas.obtenerPorId(Test.class, test);
+                System.out.println("  [+] ".concat(testRecuperado.getId().toString()).concat(":").concat(testRecuperado.getNombre()));
+                break;
+            }
+        }
 
+        log("Fin de la ejecucion");
+    }
+
+    private static void log(String msg) {
+        System.out.println("[INFO] ".concat(msg));
     }
 }

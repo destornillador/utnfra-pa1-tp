@@ -1,14 +1,14 @@
-## Getting Started
+# TP Programacion AV I
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+## Requisitos
 
-## Folder Structure
+* JDK >= 1.8 (no fue probado con otras versiones)
+* MySQL 5.7
+* Docker
+* Docker Compose
 
-The workspace contains two folders by default, where:
+## Inicializar DB
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-
-## Dependency Management
-
-The `JAVA DEPENDENCIES` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-pack/blob/master/release-notes/v0.9.0.md#work-with-jar-files-directly).
+```
+$> docker-compose up -d
+```

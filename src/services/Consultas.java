@@ -159,7 +159,7 @@ public class Consultas {
         }
     }
 
-    public static Object obtenerPorId(Class c, Object o) {
+    public static Object obtenerPorId(Class<?> c, Object o) {
         // Modificar todas las columnas excepto Id
         String table;
         Map<String, String> objMap; // [columnName: value]
